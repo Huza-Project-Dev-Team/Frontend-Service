@@ -2,7 +2,9 @@
 import {useState, useEffect} from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-
+import { FaLinkedin } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
+import { SiFacebook } from "react-icons/si";
 
 
 export default  function Login(){
@@ -12,11 +14,11 @@ export default  function Login(){
                 <header className="flex items-center justify-between bg-[#020A1A] py-4 px-6" >
                     <div className="flex items-center gap-2">
                         <div className="h-6 w-6 rounded-full bg-gradient-to-br from-blue-400 to-indigo-600" />
-                        <span className="font-semibold tracking-wide text-2xl">Huza</span>
+                        <span className="font-semibold tracking-wide text-2xl text-white">Huza</span>
                     </div>
 
                     <div className="flex items-center float-right gap-3 text-[14.5px]">
-                        <Link href="/signup" className="px-6 py-2 rounded-2xl border border-white/80 hover:border-white/60">
+                        <Link href="/signup" className="px-6 py-2 rounded-2xl border  text-white border-white/80 hover:border-white/60">
                             Sign up
                         </Link>
                         <Link href="/login" className="w-30 py-2 text-center rounded-2xl border bg-[#fff] text-[#020A1A] hover:bg-[#fff]">
@@ -52,7 +54,7 @@ export default  function Login(){
                             
 
                             <div className="flex items-center justify-center gap-3 text-[14px]">
-                                <Link href="/login" className="w-25 py-2 border bg-black border-white/80 hover:border-white/60">
+                                <Link href="/login" className="w-25 py-2 border bg-black text-white border-white/80 hover:border-white/60">
                                     Login
                                 </Link>
                                 <Link href="/signup" className="w-25 py-2 text-center border bg-[#fff] text-[#020A1A] hover:bg-[#12151f] hover:text-white">
@@ -62,10 +64,10 @@ export default  function Login(){
 
                             <div>
                                 <p className='my-5 text-black/50 text-[15px]'><u>or Login with</u></p>
-                                <div className='text-[#6572FF] font-semibold space-x-20 text-[15px] mb-4'>
-                                    <a href="">Facebook</a>
-                                    <a href="">LinkedIn</a>
-                                    <a href="">Google</a>
+                                <div className='flex items-center justify-center text-[#6572FF] font-semibold space-x-25 text-[15px] mb-4'>
+                                    <FaLinkedin className='text-2xl' />
+                                    <FcGoogle className="text-2xl" />
+                                    <SiFacebook className="text-2xl text-blue-600" />
                                 </div>
                             </div>
 
