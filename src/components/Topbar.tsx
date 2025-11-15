@@ -5,14 +5,8 @@ import { useUser } from "@/contexts/UserContext";
 const Topbar = () => {
   const {user}=useUser()
   return (
-    <div className="fixed  w-full flex justify-between items-center py-4 px-8 bg-[#020A1A]">
-      {/* Logo */}
-      <div className="text-white font-bold text-xl flex ">
-        <Image src="/logo.png" alt="logo" width={50} height={50} />
-        <span>HUZA</span>
-      </div>
-
-      <div className="flex gap-6 items-center ">
+    <div className="fixed top-0 right-0 h-16 flex justify-end items-center py-4 px-8 bg-[#09111E] z-10" style={{ width: 'calc(100% - 15rem)' }}>
+      <div className="flex gap-6 items-center">
         <div className="hover:bg-[#1a2234] p-1 rounded-lg">
           <BiBell color="white" size={25} className="cursor-pointer" />
         </div>

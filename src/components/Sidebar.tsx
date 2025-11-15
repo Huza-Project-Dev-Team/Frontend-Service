@@ -8,6 +8,8 @@ import { BiBulb } from "react-icons/bi";
 import { GrGraphQl } from "react-icons/gr";
 import { PiGradientBold, PiGraphBold } from "react-icons/pi";
 import { CgBulb } from "react-icons/cg";
+import { BiSearch, BiFilterAlt } from "react-icons/bi";
+import Image from "next/image";
 
 interface LinkProps {
   label: string;
@@ -48,7 +50,24 @@ const Sidebar = ({ role }: SidebarProps) => {
   const pathname = usePathname();
 
   return (
-    <aside className="fixed mt-[4rem] px-4 pt-6 flex flex-col gap-3 bg-[#09111E] h-screen w-[15rem]">
+    <aside className="fixed top-0 left-0 px-4 py-4 flex flex-col gap-3 bg-[#09111E] h-screen w-[15rem] overflow-y-auto">
+      <div className="space-y-4 px-2">
+        <div className="text-white font-bold text-xl flex items-center gap-2 my-4 ml-1">
+          <Image src="/logo.png" alt="logo" width={40} height={40} />
+          <span>HUZA</span>
+        </div>
+        
+        <div className="relative my-10">
+          <BiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={12} />
+          <input
+            type="text"
+            placeholder="Search anything..."
+            className="w-full pl-10 pr-2 py-2 bg-[#0F172A] border border-gray-700 rounded-lg text-xs text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+          
+        </div>
+      </div>
+      
       {links[role].map((link, index) => (
         <Link
           href={link.href}

@@ -19,12 +19,14 @@ const layout = ({ children }: { children: React.ReactNode }) => {
   const userRole = user?.role || "admin";
   
   return (
-    <div>
-      <Topbar />
+    <div className="flex h-screen overflow-hidden bg-[#09111E]">
+      <Sidebar role={userRole} />
       
-      <div className="flex">
-        <Sidebar role={userRole} />
-        <div className="pt-20 pb-10 px-2 flex-1 ml-[15rem]">{children}</div>
+      <div className="flex-1 flex flex-col overflow-hidden ml-60">
+        <Topbar />
+        <div className="flex-1 overflow-auto p-4 pt-20">
+          {children}
+        </div>
       </div>
     </div>
   );
