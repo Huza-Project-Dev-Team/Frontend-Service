@@ -107,19 +107,20 @@ const SolutionsBarChart = () => {
 
 const SectorDonutChart = () => {
   const sectors = [
-    { name: "Pending", value: 30, color: "#C026D3" },
-    { name: "Shortlisted", value: 50, color: "#3B82F6" },
-    { name: "Approved", value: 120, color: "#06B6D4" },
+    { name: "Pending", value: 30, count: 30, color: "#C026D3" },
+    { name: "Shortlisted", value: 50, count: 50, color: "#3B82F6" },
+    { name: "Approved", value: 120, count: 120, color: "#06B6D4" },
   ];
-  const total = 200;
+  const total = 150;
+  const totalValue = sectors.reduce((sum, s) => sum + s.value, 0);
   const circumference = 2 * Math.PI * 70;
   let accumulated = 0;
 
   return (
     <div className="bg-[#0B1226] rounded-lg p-6 flex flex-col h-full">
       <div className="flex justify-between items-center mb-4">
-        <h3 className="text-sm font-semibold text-white">Sector problems</h3>
-        <button className="text-xs text-gray-400 border border-gray-700 rounded px-2 py-1 flex items-center gap-1">
+        <h3 className="text-lg font-semibold text-white">Solutions</h3>
+        <button className="text-xs text-gray-400 border border-gray-700 rounded px-3 py-1.5 flex items-center gap-1.5">
           Export
           <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -128,22 +129,23 @@ const SectorDonutChart = () => {
       </div>
 
       <div className="flex items-center justify-center flex-1 relative">
-        <svg width="180" height="180" viewBox="0 0 180 180" className="-rotate-90">
-          <circle cx="90" cy="90" r="70" fill="none" stroke="#1F2937" strokeWidth="28" />
+        <svg width="220" height="220" viewBox="0 0 220 220" className="-rotate-90">
+          <circle cx="110" cy="110" r="85" fill="none" stroke="#1F2937" strokeWidth="20" />
           {sectors.map((s, i) => {
             const start = accumulated;
-            accumulated += s.value;
+            const percentage = (s.value / totalValue) * 100;
+            accumulated += percentage;
             const offset = circumference * (start / 100);
-            const length = circumference * (s.value / 100);
+            const length = circumference * (percentage / 100);
             return (
               <circle
                 key={i}
-                cx="90"
-                cy="90"
-                r="70"
+                cx="110"
+                cy="110"
+                r="85"
                 fill="none"
                 stroke={s.color}
-                strokeWidth="28"
+                strokeWidth="20"
                 strokeDasharray={`${length} ${circumference}`}
                 strokeDashoffset={circumference - offset}
                 className="transition-all duration-1000"
@@ -152,24 +154,25 @@ const SectorDonutChart = () => {
           })}
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <p className="text-3xl font-bold text-white">{total}K</p>
+          <p className="text-4xl font-bold text-white">{total}k</p>
         </div>
       </div>
 
-      <div className="mt-4 space-y-2">
+      <div className="mt-6 space-y-3">
         {sectors.map((s) => (
-          <div key={s.name} className="flex justify-between text-xs">
+          <div key={s.name} className="flex justify-between items-center">
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full" style={{ backgroundColor: s.color }} />
-              <span className="text-gray-300">{s.name}</span>
+              <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: s.color }} />
+              <span className="text-sm text-gray-300">{s.name}</span>
             </div>
-            <span className="text-white font-medium">{s.value}%</span>
+            <span className="text-base text-white font-medium">{s.count}</span>
           </div>
         ))}
       </div>
     </div>
   );
 };
+
 
 const Page = () => {
   return (
