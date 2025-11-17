@@ -1,10 +1,11 @@
 "use client";
 import Card, { cardProps } from "@/components/ui/card";
-import { CircleAlert, XCircle , TicketCheck , Plus, CalendarRange} from "lucide-react";
+import { CircleAlert, XCircle , TicketCheck , Plus} from "lucide-react";
 import React from "react";
 import { BiBulb } from "react-icons/bi";
-import { Search, File } from "lucide-react";
-
+import { Search, SlidersHorizontal  } from "lucide-react";
+import { Calendar } from "lucide-react";
+import { Users } from "lucide-react";
 
 
 
@@ -17,15 +18,15 @@ const cards: cardProps[] = [
 
 const Solutions = () => {
   const solutiondetails = [
-    {title: "Agrisense",category: "Approved", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 3, comment: 1 },
-    {title: "Agrisense",category: "Shortlisted", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 3, comment: 1,  },
-    {title: "Agrisense",category: "Rejected", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 3, comment: 1 },
-    {title: "Agrisense",category: "Approved", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 3, comment: 1 },
-    {title: "Agrisense",category: "Approved", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 3, comment: 1 },
-    {title: "Agrisense",category: "Approved", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 3, comment: 1 },
-    {title: "Agrisense",category: "Approved", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 3, comment: 1 },
-    {title: "Agrisense",category: "Approved", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 3, comment: 1 },
-    {title: "Agrisense",category: "Approved", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 3, comment: 1 }
+    {title: "Agrisense",category: "Approved", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 1, comment: 1 },
+    {title: "Agrisense",category: "Shortlisted", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 1, comment: 1,  },
+    {title: "Agrisense",category: "Rejected", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 1, comment: 1 },
+    {title: "Agrisense",category: "Approved", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 1, comment: 1 },
+    {title: "Agrisense",category: "Approved", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 1, comment: 1 },
+    {title: "Agrisense",category: "Approved", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 1, comment: 1 },
+    {title: "Agrisense",category: "Approved", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 1, comment: 1 },
+    {title: "Agrisense",category: "Approved", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 1, comment: 1 },
+    {title: "Agrisense",category: "Approved", shortdescr: "Smart Irrigation System", submition: 125, date: "18 Feb",file: 1, comment: 1 }
   ]
 
 
@@ -63,7 +64,7 @@ const Solutions = () => {
             </div>
             <button className="flex items-center space-x-2 px-4 py-5 rounded-lg border border-gray-700 text-white hover:bg-gray-800 transition cursor-pointer">
               <Plus className="h-5 w-5" />
-              <span>All status</span>
+              <span>Submit Solution</span>
             </button>
           </div>
 
@@ -80,21 +81,37 @@ const Solutions = () => {
                   {solution.shortdescr}
                 </p>
 
-                <div className="flex flex-col justify-self-start text-gray-400 text-sm my-2 gap-4">
+                <div className="flex items-center justify-self-start text-gray-400 text-sm my-2 gap-6">
                   <div className="flex items-center gap-2 text-[13px]">
-                    <span><CalendarRange size={16} color="white" /></span>
-                    <span>{solution.date}, 2025</span>
+                    <span><Users size={16} color="white" /></span>
+                    <span>{solution.submition} submissions</span>
                   </div>
     
                   <div className="flex items-center gap-2 text-[13px]">
-                    <span><File size={16} color="white" /></span>
-                    <span>{solution.file} Files</span>
+                    <span><Calendar size={16} color="white" /></span>
+                    <span>{solution.date}</span>
                   </div>
                 </div>
                 
-                <div className="flex gap-4 mt-6 mx-6">
+                <div className="flex items-center justify-selef-start text-gray-400 text-sm my-2 gap-10">
+                  <div className="flex items-center gap-2 text-[13px]">
+                    <span><Users size={16} color="white" /></span>
+                    <span>{solution.file} submissions</span>
+                  </div>
+    
+                  <div className="flex items-center gap-2 text-[13px]">
+                    <span><Calendar size={16} color="white" /></span>
+                    <span>{solution.comment}</span>
+                  </div>
+                </div>
+
+                <div className="flex gap-4 mt-6">
                   <button className="flex-1 border border-white/20 text-gray-200 py-3 rounded-lg hover:bg-white/10 transition text-[13px] cursor-pointer">
                     View details
+                  </button>
+    
+                  <button className="flex-1 bg-[#061230] py-3 rounded-lg text-[13px] cursor-pointer">
+                    Delete
                   </button>
                 </div>
               </div>

@@ -6,7 +6,7 @@ import { FiFacebook, FiTwitter, FiLinkedin, FiInstagram } from 'react-icons/fi'
 export default function Footer(){
     return (
         <>
-            <footer className="bg-[#000325] border-t border-white/10 text-white">
+            <footer className="bg-[#000215] text-white">
                 <div className="mx-auto max-w-6xl px-4 py-12">
                     {/* Brand + Social */}
                     <div className="flex items-center justify-center gap-6">

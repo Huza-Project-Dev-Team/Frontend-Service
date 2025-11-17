@@ -6,9 +6,8 @@ import Link from "next/link";
 import clsx from "clsx";
 import { BiBulb } from "react-icons/bi";
 import { GrGraphQl } from "react-icons/gr";
-import { PiGradientBold, PiGraphBold } from "react-icons/pi";
-import { CgBulb } from "react-icons/cg";
-import { BiSearch, BiFilterAlt } from "react-icons/bi";
+import { PiUserSoundBold, PiGraphBold } from "react-icons/pi";
+import { BiSearch, BiMessage , BiLogoXing} from "react-icons/bi";
 import Image from "next/image";
 
 interface LinkProps {
@@ -31,18 +30,17 @@ const links: Record<SidebarProps["role"], LinkProps[]> = {
   ],
   innovator: [
     { label: "Dashboard", href: "/innovator/dashboard", icon: <HouseIcon /> },
-    { label: "Browse Problems", href: "/innovator/browse-problems", icon: <CircleSlash /> },
-    { label: "My Solutions", href: "/innovator/my-solutions", icon: <BiBulb size={20} /> },
-    { label: "Submit Solution", href: "/innovator/submit-solution", icon: <CgBulb /> },
+    { label: "Problems", href: "/innovator/problems", icon: <CircleSlash /> },
+    { label: "Solutions", href: "/innovator/solutions", icon: <BiBulb size={20} /> },
+    { label: "Feedback", href: "/innovator/feedback", icon: <BiMessage /> },
     { label: "Profile", href: "/innovator/profile", icon: <User2 /> },
   ],
   organization: [
     { label: "Dashboard", href: "/organization/dashboard", icon: <HouseIcon /> },
-    { label: "My Problems", href: "/organization/my-problems", icon: <GrGraphQl size={20} /> },
+    { label: "Problems", href: "/organization/problems", icon: <BiLogoXing size={20} /> },
     { label: "Solutions", href: "/organization/solutions", icon: <BiBulb size={20} /> },
-    { label: "Post Problem", href: "/organization/post-problem", icon: <CircleSlash /> },
-    { label: "Browse Projects", href: "/organization/browse-projects", icon: <PiGradientBold /> },
     { label: "Analytics", href: "/organization/analytics", icon: <PiGraphBold /> },
+    { label: "Profile", href: "/organization/profile", icon: <PiUserSoundBold /> },
   ],
 };
 

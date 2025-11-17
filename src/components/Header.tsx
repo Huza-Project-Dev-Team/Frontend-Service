@@ -1,46 +1,60 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
+
 
 export default function Header() {
   const [active, setActive] = useState('home')
 
-  const handleClick = (id , e) => {
+  const handleClick = (id: string, e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     setActive(id)
     const el = document.getElementById(id)
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      el.scrollIntoView({ behavior: "smooth", block: "start" })
     }
   }
+
   
 
   useEffect(() => {
-    const ids = ['home', 'about', 'features', 'solutions', 'contact']
+    const ids = ["home", "about", "features", "solutions", "contact"]
+
     const onScroll = () => {
-      let current = 'home'
+      let current = "home"
+
       for (const id of ids) {
         const el = document.getElementById(id)
         if (!el) continue
+
         const rect = el.getBoundingClientRect()
-        if (rect.top <= 90) current = id
+        const middle = window.innerHeight / 2
+
+        if (rect.top <= middle && rect.bottom >= middle) {
+          current = id
+          break
+        }
       }
+
       setActive(current)
     }
-    window.addEventListener('scroll', onScroll, { passive: true })
+
+    window.addEventListener("scroll", onScroll, { passive: true })
     onScroll()
-    return () => window.removeEventListener('scroll', onScroll)
+    return () => window.removeEventListener("scroll", onScroll)
   }, [])
+
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className="h-6 w-6 rounded-full bg-gradient-to-br from-blue-400 to-indigo-600" />
+          <Image src="/logo-70.png" width={50} height={50} alt="logo" />
           <span className="font-semibold tracking-wide text-2xl">Huza</span>
         </div>
 
-        <nav className="hidden md:flex items-center gap-8 text-[15px] text-white/80 border p-5 py-2.5 rounded-full bg-white/10">
+        <nav className="hidden md:flex items-center gap-8 text-[15px] text-white/80 border p-5 py-2.5 rounded-full bg-transparent">
           <Link
             href="#home"
             onClick={(e) => handleClick('home', e)}
@@ -66,18 +80,6 @@ export default function Header() {
           </Link>
 
           <Link
-            href="#features"
-            onClick={(e) => handleClick('features', e)}
-            className={`px-2 py-1 rounded-full transition ${
-              active === 'features'
-                ? 'text-white border-b-2 border-white'
-                : 'hover:text-white'
-            }`}
-          >
-            Features
-          </Link>
-
-          <Link
             href="#solutions"
             onClick={(e) => handleClick('solutions', e)}
             className={`px-2 py-1 rounded-full transition ${
@@ -89,6 +91,19 @@ export default function Header() {
             Solutions
           </Link>
 
+          <Link
+            href="#features"
+            onClick={(e) => handleClick('features', e)}
+            className={`px-2 py-1 rounded-full transition ${
+              active === 'features'
+                ? 'text-white border-b-2 border-white'
+                : 'hover:text-white'
+            }`}
+          >
+            Features
+          </Link>
+
+      
           <Link
             href="#contact"
             onClick={(e) => handleClick('contact', e)}
