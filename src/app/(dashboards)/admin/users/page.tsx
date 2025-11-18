@@ -1,34 +1,46 @@
 "use client";
 
 import { useState } from "react";
-import { Trash2, Edit, Search, Plus, UserPlus, Lock, User } from "lucide-react";
+import { User as UserType } from "@/types/user";
+import { Trash2, Edit, Search, Plus, UserPlus, Lock, User as UserIcon } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { DeleteConfirmationDialog } from "@/components/DeleteConfirmationDialog";
+import Image from "next/image";
 
 const UsersPage = () => {
-  const [users, setUsers] = useState([
-    {id:1,name:'Ministry of Health',profilepic:'/images/pp.png',email:'info@moh.gov.rw',phone:'+250788000111',role:'Government Agency',company:'Ministry of Health',status:'online'},
-    {id:2,name:'Emmanuel Byiringiro',profilepic:'/images/pp.png',email:'emmanuel.b@example.com',phone:'+250788123456',role:'Agriculture Specialist',company:'AgriTech Solutions',status:'offline'},
-    {id:3,name:'Alice Mukamana',profilepic:'/images/pp.png',email:'alice.m@example.com',phone:'+250788234567',role:'Transport Engineer',company:'InfraTrans Ltd',status:'online'},
-    {id:4,name:'Jean Claude Nshimiyimana',profilepic:'/images/pp.png',email:'jcnshimiyimana@example.com',phone:'+250788345678',role:'Education Researcher',company:'EduTech Rwanda',status:'hybrid'},
-    {id:5,name:'Grace Uwase',profilepic:'/images/pp.png',email:'grace.uwase@example.com',phone:'+250788456789',role:'Financial Analyst',company:'Rwanda Revenue Authority',status:'online'},
-    {id:6,name:'Samuel Mugisha',profilepic:'/images/pp.png',email:'sam.mugisha@example.com',phone:'+250788567890',role:'Environmental Officer',company:'Kigali Environmental Unit',status:'offline'},
-    {id:8,name:'Patrick Habimana',profilepic:'/images/pp.png',email:'patrick.h@example.com',phone:'+250788789012',role:'Security Analyst',company:'Rwanda National Police',status:'hybrid'},
-    {id:9,name:'Linda Ingabire',profilepic:'/images/pp.png',email:'linda.ingabire@example.com',phone:'+250788890123',role:'Tourism Consultant',company:'Rwanda Development Board',status:'online'}
+  const [users, setUsers] = useState<UserType[]>([
+    {id:1,name:'Ministry of Health',avatar:'/images/pp.png',email:'info@moh.gov.rw',phone:'+250788000111',role:'Government Agency',company:'Ministry of Health',status:'online' as const},
+    {id:2,name:'Emmanuel Byiringiro',avatar:'/images/pp.png',email:'emmanuel.b@example.com',phone:'+250788123456',role:'Agriculture Specialist',company:'AgriTech Solutions',status:'offline' as const},
+    {id:3,name:'Alice Mukamana',avatar:'/images/pp.png',email:'alice.m@example.com',phone:'+250788234567',role:'Transport Engineer',company:'InfraTrans Ltd',status:'online' as const},
+    {id:4,name:'Jean Claude Nshimiyimana',avatar:'/images/pp.png',email:'jcnshimiyimana@example.com',phone:'+250788345678',role:'Education Researcher',company:'EduTech Rwanda',status:'away' as const},
+    {id:5,name:'Grace Uwase',avatar:'/images/pp.png',email:'grace.uwase@example.com',phone:'+250788456789',role:'Financial Analyst',company:'Rwanda Revenue Authority',status:'online' as const, lastSeen: new Date().toISOString()},
+    {id:6,name:'Samuel Mugisha',avatar:'/images/pp.png',email:'sam.mugisha@example.com',phone:'+250788567890',role:'Environmental Officer',company:'Kigali Environmental Unit',status:'offline' as const},
+    {id:8,name:'Patrick Habimana',avatar:'/images/pp.png',email:'patrick.h@example.com',phone:'+250788789012',role:'Security Analyst',company:'Rwanda National Police',status:'away' as const},
+    {id:9,name:'Linda Ingabire',avatar:'/images/pp.png',email:'linda.ingabire@example.com',phone:'+250788890123',role:'Tourism Consultant',company:'Rwanda Development Board',status:'online' as const}
   ]);
 
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [userToDelete, setUserToDelete] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [isAddUserDialogOpen, setIsAddUserDialogOpen] = useState(false);
-  const [editingUser, setEditingUser] = useState<any>(null);
-  const [newUser, setNewUser] = useState({
+  const [editingUser, setEditingUser] = useState<UserType | null>({
+    id: 0,
     name: '',
     email: '',
     phone: '',
     role: '',
     company: '',
-    status: 'online'
+    status: 'online',
+    avatar: '/images/pp.png'
+  });
+  const [newUser, setNewUser] = useState<Omit<UserType, 'id'>>({
+    name: '',
+    email: '',
+    phone: '',
+    role: '',
+    company: '',
+    status: 'online' as const,
+    avatar: '/images/pp.png'
   });
 
   const handleDeleteClick = (userId: number, e: React.MouseEvent) => {
@@ -37,7 +49,7 @@ const UsersPage = () => {
     setDeleteDialogOpen(true);
   };
 
-  const handleEditClick = (user: any, e: React.MouseEvent) => {
+  const handleEditClick = (user: UserType, e: React.MouseEvent) => {
     e.stopPropagation();
     setEditingUser({...user});
   };
@@ -61,10 +73,11 @@ const UsersPage = () => {
   };
 
   const handleAddUser = () => {
-    const newUserWithId = {
+    const newUserWithId: UserType = {
       ...newUser,
-      id: Math.max(...users.map(u => u.id), 0) + 1,
-      profilepic: '/images/pp.png'
+      id: Math.max(0, ...users.map(u => u.id)) + 1,
+      avatar: '/images/pp.png',
+      lastSeen: new Date().toISOString()
     };
     setUsers([...users, newUserWithId]);
     setIsAddUserDialogOpen(false);
@@ -74,11 +87,12 @@ const UsersPage = () => {
       phone: '',
       role: '',
       company: '',
-      status: 'online'
+      status: 'online' as const,
+      avatar: '/images/pp.png'
     });
   };
 
-  const filteredUsers = users.filter(user => 
+  const filteredUsers: UserType[] = users.filter(user => 
     user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -129,7 +143,7 @@ const UsersPage = () => {
                   <tr key={user.id} className={`hover:bg-gray-800/50 ${users.indexOf(user) % 2 === 0 ? 'bg-[#0A1330]' : ''}`}>
                     <td className="px-3 py-4 whitespace-nowrap">
                       <div className="flex items-center">
-                        <img src={user.profilepic} className="h-8 w-8 rounded-full object-cover" />
+                        <Image src={user.avatar} alt={user.name} className="h-8 w-8 rounded-full object-cover" />
                         <div className="ml-3">
                           <div className="text-xs font-medium text-white">{user.name}</div>
                           <div className="text-[10px] text-gray-400">{user.company}</div>
@@ -204,7 +218,7 @@ const UsersPage = () => {
           <div className="p-6 space-y-6">
             <div>
               <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-                <User className="h-4 w-4 text-gray-400" />
+                <UserIcon className="h-4 w-4 text-gray-400" />
                 Personal Information
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -263,11 +277,14 @@ const UsersPage = () => {
                   <select
                     className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={newUser.status}
-                    onChange={(e) => setNewUser({...newUser, status: e.target.value})}
+                    onChange={(e) => {
+                      const status = e.target.value as 'online' | 'offline' | 'away';
+                      setNewUser({...newUser, status});
+                    }}
                   >
                     <option value="online">Online</option>
                     <option value="offline">Offline</option>
-                    <option value="hybrid">Hybrid</option>
+                    <option value="away">Away</option>
                   </select>
                 </div>
               </div>
@@ -331,7 +348,7 @@ const UsersPage = () => {
           <div className="p-6 space-y-6">
             <div>
               <h3 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-                <User className="h-4 w-4 text-gray-400" />
+                <UserIcon className="h-4 w-4 text-gray-400" />
                 Personal Information
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -341,7 +358,7 @@ const UsersPage = () => {
                     type="text"
                     className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={editingUser?.name || ''}
-                    onChange={(e) => setEditingUser({...editingUser, name: e.target.value})}
+                    onChange={(e) => editingUser && setEditingUser({...editingUser, name: e.target.value})}
                   />
                 </div>
                 <div>
@@ -350,7 +367,7 @@ const UsersPage = () => {
                     type="email"
                     className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={editingUser?.email || ''}
-                    onChange={(e) => setEditingUser({...editingUser, email: e.target.value})}
+                    onChange={(e) => editingUser && setEditingUser({...editingUser, email: e.target.value})}
                   />
                 </div>
                 <div>
@@ -359,7 +376,7 @@ const UsersPage = () => {
                     type="text"
                     className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={editingUser?.role || ''}
-                    onChange={(e) => setEditingUser({...editingUser, role: e.target.value})}
+                    onChange={(e) => editingUser && setEditingUser({...editingUser, role: e.target.value})}
                   />
                 </div>
                 <div>
@@ -368,7 +385,7 @@ const UsersPage = () => {
                     type="text"
                     className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={editingUser?.company || ''}
-                    onChange={(e) => setEditingUser({...editingUser, company: e.target.value})}
+                    onChange={(e) => editingUser && setEditingUser({...editingUser, company: e.target.value})}
                   />
                 </div>
                 <div>
@@ -377,19 +394,22 @@ const UsersPage = () => {
                     type="tel"
                     className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                     value={editingUser?.phone || ''}
-                    onChange={(e) => setEditingUser({...editingUser, phone: e.target.value})}
+                    onChange={(e) => editingUser && setEditingUser({...editingUser, phone: e.target.value})}
                   />
                 </div>
                 <div>
                   <label className="block text-xs font-medium text-gray-300 mb-1">Status</label>
                   <select
                     className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md text-sm text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={editingUser?.status || 'online'}
-                    onChange={(e) => setEditingUser({...editingUser, status: e.target.value})}
+                    value={editingUser?.status || ''}
+                    onChange={(e) => {
+                      const status = e.target.value as 'online' | 'offline' | 'away';
+                      editingUser && setEditingUser(prev => prev ? { ...prev, status } : null);
+                    }}
                   >
                     <option value="online">Online</option>
                     <option value="offline">Offline</option>
-                    <option value="hybrid">Hybrid</option>
+                    <option value="away">Away</option>
                   </select>
                 </div>
               </div>

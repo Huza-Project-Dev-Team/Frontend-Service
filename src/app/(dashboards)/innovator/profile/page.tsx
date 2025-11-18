@@ -2,6 +2,7 @@
 
 import { useState, useRef, ChangeEvent } from 'react';
 import { Upload, X, Phone, Briefcase, MapPin, Globe } from 'lucide-react';
+import Image from 'next/image';
 
 export default function ProfilePage() {
   const [formData, setFormData] = useState({
@@ -61,7 +62,7 @@ export default function ProfilePage() {
               <div className="md:col-span-1">
                 <div className="flex flex-col items-center">
                   <div className="w-28 h-28 rounded-full bg-[#0B1226] flex items-center justify-center overflow-hidden mb-2">
-                    <img 
+                    <Image
                       src={profileImage || '/Avatar-Circle.png'} 
                       alt="Profile" 
                       className="w-full h-full object-cover"

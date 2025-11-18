@@ -2,11 +2,9 @@
 
 import Card, { cardProps } from "@/components/ui/card";
 import { CircleAlert, LineChart, TicketCheck } from "lucide-react";
-import Image from "next/image";
 import React from "react";
 import { BiBulb } from "react-icons/bi";
-import { Calendar } from "lucide-react";
-import { Users,MessageCircle, Eye } from "lucide-react";
+import { MessageCircle, Eye } from "lucide-react";
 import { Lightbulb, CheckCircle, FilePlus, Clock } from "lucide-react";
 
 

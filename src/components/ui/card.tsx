@@ -1,4 +1,4 @@
-import { ArrowUp, TicketIcon } from 'lucide-react'
+import { ArrowUp } from 'lucide-react'
 import React from 'react'
 import { BiDotsHorizontal } from 'react-icons/bi'
 

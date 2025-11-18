@@ -6,8 +6,7 @@ import React, { useState } from "react";
 import { BiBulb } from "react-icons/bi";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { ProblemDialog } from "@/components/ProblemDialog";
-import { Edit, Trash2, Search, Plus,RotateCcw } from "lucide-react";
+import { Search,RotateCcw } from "lucide-react";
 
 const problems = [
   {title:'Smart health management',submittedBy:'ministry of health',sector:'agriculture',date:'25-09-2025',availability:'online'},

@@ -1,5 +1,5 @@
 'use client';
-import {useState, useEffect} from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaInnosoft } from "react-icons/fa";
@@ -38,10 +38,26 @@ export default  function Signup(){
                 <div className='flex'>
                     <div className=" flex-1 bg-[#010917] ">
                         <h1 className="text-4xl text-white  my-6 text-center font-semibold" >Welcome  <span className='text-[#6572FF]'>to</span></h1>
-                        <img src="/logo.png" className='mx-auto w-24 h-10 my-6' />
+                        <div className="relative w-24 h-10 mx-auto my-6">
+                          <Image 
+                            src="/logo.png" 
+                            alt="HUZA Logo"
+                            fill
+                            className="object-contain"
+                            priority
+                          />
+                        </div>
                         <h1 className='text-9xl font-semibold  text-center my-4 text-white'>HUZA</h1>
                         <p className="text-[15px] text-white/80 text-center my-4 mx-15">where we connect innovators, organisations and companies to solve real world problems.</p>
-                        <img src="/Login image.png" className='w-70 h-50 float-right m-6'/>
+                        <div className="relative w-48 h-40 float-right m-6">
+                          <Image 
+                            src="/Login image.png" 
+                            alt="Signup illustration"
+                            fill
+                            className="object-contain"
+                            priority
+                          />
+                        </div>
                         <div className='w-60 h-60 overflow-hidden  relative top-60 right-30 rounded-full bg-gradient-to-br from-white to-[#1048C5]'></div>
                     </div>
 

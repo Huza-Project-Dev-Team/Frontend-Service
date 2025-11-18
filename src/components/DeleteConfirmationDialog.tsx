@@ -2,7 +2,7 @@
 "use client"
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
-import { Trash2, X } from "lucide-react";
+import { Trash2} from "lucide-react";
 
 interface DeleteConfirmationDialogProps {
   isOpen: boolean;

@@ -1,31 +1,31 @@
 "use client";
 
-import Card, { cardProps } from "@/components/ui/card";
-import { CircleAlert, LineChart, Pencil, TicketCheck, Trash, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Loader, Rotate3D } from "lucide-react";
-import React, { useState } from "react";
+import Card from "@/components/ui/card";
+import { CircleAlert, LineChart, Pencil, TicketCheck, Trash, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, Search, RotateCcw } from "lucide-react";
+import { ReactNode, useState } from "react";
 import { BiBulb } from "react-icons/bi";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { ProblemDialog } from "@/components/ProblemDialog";
-import { Edit, Trash2, Search, Plus,RotateCcw } from "lucide-react";
 
-const problems = [
-  {title:'Smart health management',organization:'ministry of health',sector:'agriculture',date:'25-09-2025',availability:'online'},
-  {title:'Digital Farming Insights',organization:'Rwanda Agriculture Board',sector:'agriculture',date:'12-03-2026',availability:'offline'},
-  {title:'Smart Transport Monitoring',organization:'Ministry of Infrastructure',sector:'transport',date:'08-11-2025',availability:'online'},
-  {title:'E-Learning Support System',organization:'Ministry of Education',sector:'education',date:'19-07-2026',availability:'hybrid'},
-  {title:'Digital Tax Collection System',organization:'Rwanda Revenue Authority',sector:'finance',date:'02-01-2026',availability:'online'},
-  {title:'Urban Waste Tracking',organization:'City of Kigali',sector:'environment',date:'14-06-2025',availability:'offline'},
-  {title:'Smart Water Quality Monitor',organization:'Water and Sanitation Corporation',sector:'water',date:'26-10-2025',availability:'online'},
-  {title:'Security Incident Analyzer',organization:'Rwanda National Police',sector:'security',date:'03-12-2025',availability:'hybrid'},
-  {title:'Tourism Experience Optimizer',organization:'Rwanda Development Board',sector:'tourism',date:'17-08-2026',availability:'online'}
-];
+type CardProps = {
+  icon: ReactNode;
+  label: string;
+  value: number;
+  percentage: number;
+};
 
-const cards: cardProps[] = [
+const cards: CardProps[] = [
   { icon: <CircleAlert />, label: "Total problems", value: 0, percentage: 12 },
   { icon: <BiBulb size={24} />, label: "Active problems", value: 0, percentage: 12 },
   { icon: <TicketCheck />, label: "Closed problems", value: 0, percentage: 12 },
   { icon: <LineChart />, label: "Average submissions", value: 0, percentage: 12 },
+];
+
+const problems = [
+  { title: 'Digital Farming Insights', organization: 'Rwanda Agriculture Board', sector: 'agriculture', date: '12-03-2026', availability: 'offline' as const },
+  { title: 'Smart Transport Monitoring', organization: 'Ministry of Infrastructure', sector: 'transport', date: '08-11-2025', availability: 'online' as const },
+  { title: 'E-Learning Support System', organization: 'Ministry of Education', sector: 'education', date: '19-07-2026', availability: 'hybrid' as const },
+  { title: 'Digital Tax Collection System', organization: 'Rwanda Revenue Authority', sector: 'finance', date: '02-01-2026', availability: 'online' as const },
 ];
 
 const ProblemsPage = () => {
@@ -237,8 +237,8 @@ const ProblemsPage = () => {
           </Table>
           <PaginationControls />
         </div>
-        <ProblemDetailsDialog />
       </div>
+      <ProblemDetailsDialog />
     </div>
   );
 };

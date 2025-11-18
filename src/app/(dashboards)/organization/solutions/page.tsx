@@ -15,7 +15,17 @@ const cards: cardProps[] = [
 
 
 const Solutions = () => {
-  const [selectedSolution, setSelectedSolution] = useState<any | null>(null);
+  interface Solution {
+  title: string;
+  category: string;
+  shortdescr: string;
+  submition: number;
+  date: string;
+  file: number;
+  comment: number;
+}
+
+const [selectedSolution, setSelectedSolution] = useState<Solution | null>(null);
   const [file1, setFile1] = useState<File | null>(null);
 
 

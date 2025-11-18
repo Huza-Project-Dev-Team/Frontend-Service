@@ -3,7 +3,7 @@ import Card, { cardProps } from "@/components/ui/card";
 import { CircleAlert, XCircle , TicketCheck , Plus} from "lucide-react";
 import React from "react";
 import { BiBulb } from "react-icons/bi";
-import { Search, SlidersHorizontal  } from "lucide-react";
+import { Search} from "lucide-react";
 import { Calendar } from "lucide-react";
 import { Users } from "lucide-react";
 

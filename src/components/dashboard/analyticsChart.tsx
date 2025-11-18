@@ -29,8 +29,8 @@ export default function AnalyticsChart() {
             dataKey="name"
             stroke="#aaa"
             interval={0}
+            angle={-30}
             tick={{
-              angle: -30,
               dy: 10,
               fill: "#fff",
               fontWeight: "bold",

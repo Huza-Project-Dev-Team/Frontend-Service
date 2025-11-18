@@ -5,7 +5,6 @@ import React from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { BiBulb } from "react-icons/bi";
-import { GrGraphQl } from "react-icons/gr";
 import { PiUserSoundBold, PiGraphBold } from "react-icons/pi";
 import { BiSearch, BiMessage , BiLogoXing} from "react-icons/bi";
 import Image from "next/image";

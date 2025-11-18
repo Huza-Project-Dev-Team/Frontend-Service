@@ -1,11 +1,10 @@
 "use client";
-import Card, { cardProps } from "@/components/ui/card";
+import  { cardProps } from "@/components/ui/card";
 import { CircleAlert, XCircle , TicketCheck , Plus} from "lucide-react";
 import React from "react";
 import { BiBulb } from "react-icons/bi";
-import { Search, SlidersHorizontal  } from "lucide-react";
-import { Calendar } from "lucide-react";
-import { Users, ArrowRight , Clock, MessageCircle} from "lucide-react";
+import { Search, SlidersHorizontal  } from "lucide-react";;
+import { ArrowRight , Clock, MessageCircle} from "lucide-react";
 
 
 

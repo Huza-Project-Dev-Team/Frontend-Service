@@ -4,7 +4,7 @@ import Topbar from "@/components/Topbar";
 import Sidebar from "@/components/Sidebar";
 import { useUser } from "@/contexts/UserContext";
 
-const layout = ({ children }: { children: React.ReactNode }) => {
+const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const { user, loading } = useUser();
   
 
@@ -32,4 +32,4 @@ const layout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default layout;
+export default DashboardLayout;

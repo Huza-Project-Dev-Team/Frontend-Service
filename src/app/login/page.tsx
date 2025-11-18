@@ -1,5 +1,4 @@
 'use client';
-import {useState, useEffect} from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaLinkedin } from "react-icons/fa";
@@ -78,7 +77,15 @@ export default  function Login(){
                         <h1 className="text-3xl text-white text-center font-semibold" >Connection problems to solutions all with <span className='text-[#6572FF]'>HUZA</span></h1>
                         <p className="text-[15px] text-white/80 text-center my-6">We are linking dreams with innovation by providing tech solutions evrywhere!</p>
 
-                        <img src="/Login image.png" />
+                        <div className="relative w-full h-64">
+                          <Image 
+                            src="/Login image.png" 
+                            alt="Login illustration"
+                            fill
+                            className="object-contain"
+                            priority
+                          />
+                        </div>
                         <div className='flex items-center justify-center space-x-2 my-3'>
                             <span className='w-30 h-[4px] bg-[#6572FF]'></span>
                             <span className='w-30 h-[4px] bg-[#fff]'></span>

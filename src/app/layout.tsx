@@ -6,15 +6,7 @@ import '@fontsource/poppins/600.css';
 import '@fontsource/poppins/700.css';
 import { UserProvider } from "@/contexts/UserContext";      
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const poppins=Poppins({
   subsets:['latin'],

@@ -241,7 +241,7 @@ export default function LandingPage() {
                 Ready to <span className="text-transparent bg-clip-text bg-[#2453D2]">Connect</span> ?
               </h2>
               <p className="text-white/70 text-md max-w-2xl mx-auto">
-                Let's discuss how Huza can help transform your ideas into reality. We're here to support your innovation journey.
+                Let&apos;s discuss how Huza can help transform your ideas into reality. We&apos;re here to support your innovation journey.
               </p>
             </div>
 
@@ -307,7 +307,7 @@ export default function LandingPage() {
                 <div className="rounded-3xl border border-white/20 p-8 backdrop-blur-sm">
                   <div className="mb-8">
                     <h3 className="text-2xl font-bold mb-2">Send us a Message</h3>
-                    <p className="text-white/70">Fill out the form below and we'll get back to you within 24 hours</p>
+                    <p className="text-white/70">Fill out the form below and we&apos;ll get back to you within 24 hours</p>
                   </div>
 
                   <form className="space-y-6">
